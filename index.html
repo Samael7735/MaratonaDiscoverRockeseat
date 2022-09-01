@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maratona Discover</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!--Fontes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,400&display=swap" rel="stylesheet">
+    <!--Fontes-->
+  </head>
+  <body>
+    <header>
+      <h1 id="logo">dev.finance$</h1>
+    </header>
+    <main class="conteiner">
+      <section id="balance">
+        <h2 id="titulo" >Balanço</h2>
+        <div class="card">
+          <h3>Entradas</h3>
+          <p>R$ 5.000,00</p>
+        </div>
+        <div class="card">
+          <h3>Saídas</h3>
+          <p>R$ 2.000,00</p>
+        </div>
+        <div class="card total">
+          <h3>Total</h3>
+          <p>R$ 3.000,00</p>
+        </div>
+      </section>
+      <section id="transaction">
+        <h2 class="h2Text">Transações</h2>
+        <table id="data_table">
+          <thead><!--table head-->
+            <tr class="borda"><!--Tbale row-->
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="description">Luz</td>
+              <td class="expense">-R$ 500,00</td>
+              <td>01/09/2022</td>
+            </tr>
+            <tr>
+              <td class="description">Criação de web sites</td>
+              <td class="income">R$ 5.000,00</td>
+              <td>01/09/2022</td>
+            </tr>
+            <tr>
+              <td class="description">Internet</td>
+              <td class="expense">- R$ 500,00</td>
+              <td>01/09/2022</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer><p>Dev.Finance</p></footer>
+  </body>
+</html>
