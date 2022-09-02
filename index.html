@@ -15,32 +15,43 @@
   </head>
   <body>
     <header>
-      <h1 id="logo">dev.finance$</h1>
+      <img src="/assets/logo.svg" alt="imagem da logo" class="logo">
     </header>
     <main class="conteiner">
       <section id="balance">
-        <h2 id="titulo" >Balanço</h2>
+        <h2 class="sr-only" id="titulo" >Balanço</h2>
         <div class="card">
-          <h3>Entradas</h3>
+          <h3>
+            <span>Entradas</span>
+            <img src="/assets/income.svg" alt="">
+          </h3>
           <p>R$ 5.000,00</p>
         </div>
         <div class="card">
-          <h3>Saídas</h3>
+          <h3>
+            <span>Saídas</span>
+            <img src="/assets/expense.svg" alt="">
+          </h3>
           <p>R$ 2.000,00</p>
         </div>
         <div class="card total">
-          <h3>Total</h3>
+          <h3>
+            <span>Total</span>
+            <img src="/assets/total.svg" alt="">
+          </h3>
           <p>R$ 3.000,00</p>
         </div>
       </section>
       <section id="transaction">
-        <h2 class="h2Text">Transações</h2>
+        <h2 class="h2Text sr-only">Transações</h2>
+        <a href="#" onclick="abrir()" id="adicionar" class="button new">+ Nova Transação</a>
         <table id="data_table">
           <thead><!--table head-->
             <tr class="borda"><!--Tbale row-->
               <th>Descrição</th>
               <th>Valor</th>
               <th>Data</th>
+              <td></td>
             </tr>
           </thead>
           <tbody>
@@ -48,21 +59,62 @@
               <td class="description">Luz</td>
               <td class="expense">-R$ 500,00</td>
               <td>01/09/2022</td>
+              <td>
+                <img src="/assets/minus.svg" alt="remover Transação">
+              </td>
             </tr>
             <tr>
               <td class="description">Criação de web sites</td>
               <td class="income">R$ 5.000,00</td>
               <td>01/09/2022</td>
+              <td>
+                <img src="/assets/minus.svg" alt="remover Transação">
+              </td>
             </tr>
             <tr>
               <td class="description">Internet</td>
               <td class="expense">- R$ 500,00</td>
               <td>01/09/2022</td>
+              <td>
+                <img src="/assets/minus.svg" alt="remover Transação">
+              </td>
             </tr>
           </tbody>
         </table>
       </section>
     </main>
+    <div id="modal" class="modal-overlay">
+      <div class="modal">
+        <div id="form">
+          <h2>Nova Transação</h2>
+          <div class="input-group">
+            <form action="">
+              <label class="sr-only" for="description"></label>
+              <input type="text" id="description" name="description" placeholder="Insira o titulo">
+            </form>
+          </div>
+          <div class="input-group">
+            <form action="">
+              <label class="sr-only" for="amount"></label>
+              <input type="number" id="amount" name="amount" step="0.01" placeholder="0,00">
+              <smal class="help">Use o sinal -(negativo) para despesas e , (virgula) para casas decimais.
+              </smal>
+            </form>
+          </div>
+          <div class="input-group">
+            <form action="">
+              <label class="sr-only" for="data"></label>
+              <input type="date" id="data" name="data">
+            </form>
+          </div>
+          <div class="input-group actions">
+            <a onclick="fechar()" href="#" id="cancelar" class="button cancel">Cancelar</a>
+            <button>Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer><p>Dev.Finance</p></footer>
+    <script src="main.js"></script>
   </body>
 </html>
