@@ -34,10 +34,15 @@ const transactions =[
   }
 ]
 //funcionalidades
-const transaction = {
+const Transaction = {
+  all: transactions,
+  add (transaction){
+    Transaction.all.push(transaction)
+    app.reload()
+  },
   incomes(){
     let income = 0;
-    transactions.forEach(transaction=>{
+    Transaction.all.forEach(transaction=>{
       if(transaction.amount > 0){
         income += transaction.amount
       }
@@ -46,7 +51,7 @@ const transaction = {
   },
   expenses(){
     let expense = 0;
-    transactions.forEach(transaction=>{
+    Transaction.all.forEach(transaction=>{
       if(transaction.amount < 0){
         expense += transaction.amount;
       }
@@ -54,7 +59,7 @@ const transaction = {
     return expense;
   },
   total(){
-    return transaction.incomes() + transaction.expenses();
+    return Transaction.incomes() + Transaction.expenses();
   }
 }
 //utilidades
@@ -98,14 +103,33 @@ const dom ={
   },
 
   updateBalance(){
-    document.getElementById('incomeDisplay').innerHTML = Utils.formatCurrency(transaction.incomes())
-    document.getElementById('expenseDisplay').innerHTML = Utils.formatCurrency(transaction.expenses())
-    document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(transaction.total())
+    document.getElementById('incomeDisplay').innerHTML = Utils.formatCurrency(Transaction.incomes())
+    document.getElementById('expenseDisplay').innerHTML = Utils.formatCurrency(Transaction.expenses())
+    document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(Transaction.total())
+  },
+  clearTransactions(){
+    dom.transactionContainer.innerHTML = ""
   }
 }
+const app = {
+  init(){
+    Transaction.all.forEach(transaction => { //adiciona as transações já existentes
+      dom.addTransaction(transaction)
+    })
+    
+    dom.updateBalance()
+  },
+  reload(){
+    dom.clearTransactions()
+    app.init()
+  }
+}
+app.init()
 
-transactions.forEach(function(transaction){
-  dom.addTransaction(transaction)
+Transaction.add({
+  id: 2,
+  description:"aaaa",
+  amount: 300,
+  date: "02/12/1222"
 })
 
-dom.updateBalance()
