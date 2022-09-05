@@ -9,25 +9,21 @@ function abrir(){
 //registros
 const transactions =[
   {
-    id:0,
     description: 'Luz',
     amount: -50000,
     date: '03/09/2022'
   },
   {
-    id:1,
     description: 'Website',
     amount: 20000,
     date: '03/09/2022'
   },
   {
-    id:2,
     description: 'Website',
     amount: 20000,
     date: '03/09/2022'
   },
   {
-    id:3,
     description: 'Internet',
     amount: -50000,
     date: '03/09/2022'
@@ -38,6 +34,10 @@ const Transaction = {
   all: transactions,
   add (transaction){
     Transaction.all.push(transaction)
+    app.reload()
+  },
+  excluir(index){
+    Transaction.all.splice(index, 1)
     app.reload()
   },
   incomes(){
@@ -79,7 +79,6 @@ const Utils = {
 //DOM
 const dom ={
   transactionContainer : document.querySelector('#data_table tbody'),
-
   addTransaction(transaction, index){
     const tr = document.createElement('tr')
     tr.innerHTML = dom.innerHTMLTransaction(transaction)
@@ -111,6 +110,33 @@ const dom ={
     dom.transactionContainer.innerHTML = ""
   }
 }
+const Form = {
+  description: document.getElementById('description'),
+  amount: document.getElementById('amount'),
+  date: document.getElementById('data'),
+
+  getValues(){
+    return {
+      description: Form.description.value,
+      amount: Form.amount.value,
+      data: Form.date.value,
+    }
+  },
+  validadeField(){
+    const {description, amount, date} = Form.getValues()
+    if(description.trim() === "" || amount.trim() === "" || date.trim() ===""){
+      throw new Error("Por favor, preencha todos os campos")
+    }
+  },
+  submit(event){
+    event.preventDefault() 
+    try{
+      Form.validadeField()
+    }catch(error){
+      alert(error.message)
+    }
+  }
+}
 const app = {
   init(){
     Transaction.all.forEach(transaction => { //adiciona as transações já existentes
@@ -125,11 +151,4 @@ const app = {
   }
 }
 app.init()
-
-Transaction.add({
-  id: 2,
-  description:"aaaa",
-  amount: 300,
-  date: "02/12/1222"
-})
 
