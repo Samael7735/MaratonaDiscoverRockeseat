@@ -144,7 +144,7 @@ const Form = {
   submit(event){
     event.preventDefault()
     try{
-      //Form.validateField()
+      Form.validateField()
       const transaction = Form.FormatValues()
       Transaction.add(transaction)
       Form.clearFields()
